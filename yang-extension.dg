@@ -1,0 +1,29 @@
+%%% YANG module grammar
+%%% Based on YANG 1.1 RFC
+%%% This grammar generates only simple variations in minimal YANG modules
+
+%section% := value
+
+extension_def :=
+	{description %repeat%(+common:asciichar+); argument %repeat%(+common:asciichar+);}
+	{%repeat%(+common:asciichar+) %repeat%(+common:asciichar+)}
+	{description %repeat%(+common:character+); argument %repeat%(+common:character+);}
+	{description "%repeat%(+common:character+)"; argument "%repeat%(+common:character+)";}
+
+extension_use :=
+	n:!extension_name! %repeat%(+common:character+);
+	n:!extension_name! "%repeat%(+common:character+)";
+	n:!extension_name! %repeat%(+common:asciichar+);
+
+module :=
+	+extension_def+ +extension_use+}
+
+
+%section% := variable
+extension_name :=
+	module m {yang-version 1.1; namespace "n"; prefix n; extension @extension_name@
+
+%section% := variance
+
+main :=
+	+module+

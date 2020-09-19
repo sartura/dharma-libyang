@@ -1,0 +1,33 @@
+%%% YANG module grammar
+%%% Based on YANG 1.1 RFC
+%%% This grammar generates only simple variations in minimal YANG modules
+
+%section% := value
+
+revision_date_stmt :=
+	%repeat%(+common:asciichar+)
+	%repeat%(+common:asciichar+);
+
+description_stmt :=
+	%repeat%(+common:asciichar+)
+	%repeat%(+common:asciichar+);
+
+reference_stmt :=
+	%repeat%(+common:asciichar+)
+	%repeat%(+common:asciichar+);
+
+include_name :=
+	%repeat%(+common:asciichar+)
+
+include :=
+	+include_name+ {revision date +revision_date_stmt+ description +description_stmt+ reference +reference_stmt+}
+
+module :=
+	module m {yang-version 1.1; namespace "lol"; prefix l; include +include+}
+
+%section% := variable
+
+%section% := variance
+
+main :=
+	+module+

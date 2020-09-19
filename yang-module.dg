@@ -1,0 +1,27 @@
+%%% YANG module grammar
+%%% Based on YANG 1.1 RFC
+%%% This grammar generates only simple variations in minimal YANG modules
+
+%section% := value
+
+module_name :=
+	%repeat%(+common:character+)
+
+version :=
+	%repeat%(+common:character+)
+
+namespace :=
+	%repeat%(+common:character+)
+
+prefix :=
+	%repeat%(+common:character+)
+
+module :=
+	module +module_name+ {yang-version +version+ namespace +namespace+ prefix +prefix+} 
+
+%section% := variable
+
+%section% := variance
+
+main :=
+	+module+
